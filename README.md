@@ -3,7 +3,7 @@
 
 > Status: Developing 🔧
 
-**Secret Keeper** is a Python application that provides an easy-to-use interface for encrypting and decrypting your sensitive folders and files using the AES (Advanced Encryption Standard) algorithm, enhancing your data's security and privacy.
+**Secret Keeper** is a Python application that provides an easy-to-use interface for encrypting and decrypting your sensitive folders and files using the AES (Advanced Encryption Standard) algorithm. Safeguard your confidential information with ease and **keep your secrets secure.**
 
 ---
 
