@@ -1,11 +1,9 @@
-![banner](https://github.com/devIasminSilva/devIasminSilva/assets/143299286/e168cd1e-afab-4b69-85c0-1457977a2da1)
+![banner](https://github.com/devIasminSilva/SecretKeeper/assets/143299286/830895e1-97c2-475a-89a6-1014f69133a2)
 
 
 > Status: Developing 🔧
 
 **Secret Keeper** is a Python application that provides an easy-to-use interface for encrypting and decrypting your sensitive folders and files using the AES (Advanced Encryption Standard) algorithm. Safeguard your confidential information with ease and **keep your secrets secure.**
-
----
 
 ## Getting Started
 Follow these steps to get started with **Secret Keeper**:
