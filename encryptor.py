@@ -8,7 +8,7 @@ from Crypto.Cipher import AES
 
 class EncryptFrame(tk.Frame):
     def __init__(self, app_manager):
-        super().__init__(app_manager.root)
+        super().__init__(app_manager.root, bg='#0d1117')
 
         self.app_manager = app_manager
 
@@ -16,24 +16,27 @@ class EncryptFrame(tk.Frame):
         self.password = tk.StringVar()
         self.delete_var = tk.BooleanVar()
 
-        # Voltar ao menu principal
-        tk.Button(self, text="Back", command=self.show_menu_frame).pack(side=tk.LEFT)
+        
+        # Procurar pasta
+        self.browse_folder_image = tk.PhotoImage(file='Assets/Buttons/browse_folder.png')
+        tk.Button(self, image=self.browse_folder_image, bd=0, bg='#0d1117', activebackground='#0d1117', command=self.browse_folder).grid(row=0, column=0, sticky=tk.W, pady=30)
+        tk.Entry(self, textvariable=self.folder_path, foreground='gray', bg='#0d1117').grid(row=0, column=1, columnspan=3, ipadx=50)
 
-        # Selecionar pasta
-        tk.Label(self, text="Select a folder to encrypt").pack(ipadx=2, pady=10)
-        tk.Button(self, text="Browse Folder", command=self.browse_folder).pack()
-        tk.Entry(self, textvariable=self.folder_path).pack()
-
-        # Escolher senha
-        tk.Label(self, text="Password").pack()
-        tk.Entry(self, textvariable=self.password).pack()
+        # Gerar senha
+        self.password_image = tk.PhotoImage(file='Assets/Buttons/password.png')
+        tk.Button(self, image=self.password_image, bd=0, bg='#0d1117', activebackground='#0d1117', command=self.generate_password).grid(row=1, column=0, columnspan=3, sticky=tk.SW)
+        tk.Entry(self, textvariable=self.password, foreground='gray', bg='#0d1117').grid(row=1, column=1, ipadx=50, padx=10)
 
         # Deletar pasta após criptografia
-        tk.Checkbutton(self, text="Delete folder after encryption", variable=self.delete_var).pack()
+        tk.Checkbutton(self, text="Delete folder after encryption", bg='#0d1117', foreground='gray',  activebackground='#0d1117', selectcolor='#0d1117', variable=self.delete_var).grid(row=3, column=0, columnspan=2, sticky=tk.SW, pady=20)
 
         # Confirmar criptografia
-        tk.Button(self, text="Encrypt", command=self.encrypt).pack()
+        self.encrypt_image = tk.PhotoImage(file='Assets/Buttons/encrypt.png')
+        tk.Button(self, image=self.encrypt_image, bd=0, bg='#0d1117', activebackground='#0d1117',command=self.encrypt).grid(row=5, column=1, sticky=tk.SW)
 
+        # Voltar ao menu principal
+        self.back_image = tk.PhotoImage(file='Assets/Buttons/back.png')
+        tk.Button(self, image=self.back_image, bd=0, bg='#0d1117', activebackground='#0d1117', command=self.show_menu_frame).grid(row=5, column=0, sticky=tk.SW)
 
     # Funções
     def show_menu_frame(self):
@@ -43,6 +46,10 @@ class EncryptFrame(tk.Frame):
         folder_selected = filedialog.askdirectory()
         if folder_selected:
             self.folder_path.set(folder_selected)
+
+    def generate_password(self):
+        password = secrets.token_hex(16)  
+        self.password.set(password)
 
     def encrypt_file(self, key, in_filename, out_filename=None, chunksize=64*1024):
         if not out_filename:

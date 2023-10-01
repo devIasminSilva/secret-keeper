@@ -3,12 +3,24 @@
 
 > Status: Developing 🔧
 
-**Secret Keeper** is a Python application that provides an easy-to-use interface for encrypting and decrypting your sensitive folders and files using the AES (Advanced Encryption Standard) algorithm. Safeguard your confidential information with ease and **keep your secrets secure.**
+Secret Keeper is an application built with a singular mission - to safeguard your secrets. Designed for simplicity and security, it empowers you to encrypt and decrypt your confidential folders and files using the AES (Advanced Encryption Standard) encryption algorithm.
 
 ## Getting Started
-Follow these steps to get started with **Secret Keeper**:
 
-1. Clone this repository:
+### Prerequisites
+
+1. PyCryptoDome
+   ```
+   pip install pycryptodome
+   ```
+2. Tkinter
+   ```
+   pip install tkinter
+   ```
+
+### Installation
+
+1. Clone this repository
    ```
    git clone https://github.com/devIasminSilva/SecretKeeper.git
    ```
@@ -16,14 +28,14 @@ Follow these steps to get started with **Secret Keeper**:
    ```
    cd SecretKeeper
    ```
-3. Install dependencies:
-   ```
-   pip install pycryptodome
-   ```
-4. Run the application:
+3. Run the application:
    ```
    python main.py
    ```
+
+## Preview
+
+![1](https://github.com/devIasminSilva/SecretKeeper/assets/143299286/c08a9551-c2eb-44d4-8c36-7735c3921d19)
 
 ## ⚠️ Disclaimer
 - This project is for educational and practice purposes only. **It should not be used for encrypting sensitive or valuable information** without a full understanding of encryption principles and information security. 
