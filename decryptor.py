@@ -31,11 +31,11 @@ class DecryptFrame(tk.Frame):
 
         # Confirmar
         self.decrypt_image = tk.PhotoImage(file='assets/buttons/confirm.png')
-        tk.Button(self, image=self.decrypt_image, bd=0, bg='#1d1e1f', activebackground='#1d1e1f', cursor="hand2", command=self.decrypt).grid(row=6, column=0, sticky=tk.SW, pady=50, padx=100)
+        tk.Button(self, image=self.decrypt_image, bd=0, bg='#1d1e1f', activebackground='#1d1e1f', cursor="hand2", command=self.decrypt).grid(row=6, column=0, sticky=tk.SW, pady=40, padx=100)
 
         # Voltar ao menu
         self.back_image = tk.PhotoImage(file='assets/buttons/back.png')
-        tk.Button(self, image=self.back_image, bd=0, bg='#1d1e1f', activebackground='#1d1e1f', cursor="hand2", command=self.show_menu_frame).grid(row=6, column=0, sticky=tk.SW, pady=50, padx=10)
+        tk.Button(self, image=self.back_image, bd=0, bg='#1d1e1f', activebackground='#1d1e1f', cursor="hand2", command=self.show_menu_frame).grid(row=6, column=0, sticky=tk.SW, pady=40, padx=0)
 
 
     ###### Funções ######

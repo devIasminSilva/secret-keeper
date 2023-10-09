@@ -32,7 +32,7 @@ class EncryptFrame(tk.Frame):
         self.generate_password_image = tk.PhotoImage(file='assets/buttons/generate_password.png')
         tk.Button(self, image=self.generate_password_image, bd=0, bg='#1d1e1f', activebackground='#1d1e1f', cursor="hand2", command=self.generate_password).grid(row=4, column=0, sticky=tk.SW, pady=20, padx=10)
         self.password_entry = tk.Entry(self, textvariable=self.password, foreground='gray', bg='#1d1e1f', bd=0, show='•')
-        self.password_entry.grid(row=5, column=0, columnspan=3, sticky=tk.W, ipadx=120, padx=10)
+        self.password_entry.grid(row=5, column=0, columnspan=3, sticky=tk.W, ipadx=120, padx=10, pady=6)
 
         # Exibir e ocultar senha
         self.show_password_image = tk.PhotoImage(file='assets/buttons/show.png')
@@ -42,11 +42,11 @@ class EncryptFrame(tk.Frame):
 
         # Confirmar
         self.confirm_image = tk.PhotoImage(file='assets/buttons/confirm.png')
-        tk.Button(self, image=self.confirm_image, bd=0, bg='#1d1e1f', activebackground='#1d1e1f', cursor="hand2", command=self.encrypt).grid(row=6, column=0, sticky=tk.SW, pady=60, padx=100)
+        tk.Button(self, image=self.confirm_image, bd=0, bg='#1d1e1f', activebackground='#1d1e1f', cursor="hand2", command=self.encrypt).grid(row=6, column=0, sticky=tk.SW, pady=40, padx=100)
 
         # voltar ao menu
         self.back_image = tk.PhotoImage(file='assets/buttons/back.png')
-        tk.Button(self, image=self.back_image, bd=0, bg='#1d1e1f', activebackground='#1d1e1f', cursor="hand2", command=self.show_menu_frame).grid(row=6, column=0, sticky=tk.SW, pady=60, padx=10)
+        tk.Button(self, image=self.back_image, bd=0, bg='#1d1e1f', activebackground='#1d1e1f', cursor="hand2", command=self.show_menu_frame).grid(row=6, column=0, sticky=tk.SW, pady=40, padx=0)
 
 
     ###### Funções ######

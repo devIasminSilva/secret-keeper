@@ -4,7 +4,7 @@ from app_manager import AppManager
 def main():
     root = tk.Tk()  
     root.resizable(width=False, height=False)
-    root.iconbitmap('Assets/icon.ico')
+    root.iconbitmap('assets/icon.ico')
     app = AppManager(root)
     root.mainloop()
 
