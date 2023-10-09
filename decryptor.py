@@ -15,8 +15,7 @@ class DecryptFrame(tk.Frame):
 
         # Background
         self.background_image = tk.PhotoImage(file='assets/backgrounds/bg.png')
-        self.background_label = tk.Label(self, image=self.background_image)
-        self.background_label.place(x=0, y=0, relwidth=1, relheight=1)
+        self.background_label = tk.Label(self, image=self.background_image).place(x=0, y=0, relwidth=1, relheight=1)
 
         tk.Label(self, text=" ", background='#1d1e1f').grid(row=0, column=0, sticky=tk.W, pady=5)
 
