@@ -9,7 +9,7 @@ Secret Keeper is an application built with a singular mission - to safeguard you
 
 ### Prerequisites
 
-1. PyCryptoDome
+1. PyCryptodome
    ```
    pip install pycryptodome
    ```
@@ -35,7 +35,7 @@ Secret Keeper is an application built with a singular mission - to safeguard you
 
 ## Preview
 
-![1](https://github.com/devIasminSilva/SecretKeeper/assets/143299286/c08a9551-c2eb-44d4-8c36-7735c3921d19)
+![preview](https://github.com/devIasminSilva/SecretKeeper/assets/143299286/16d3aa22-ca13-4c1a-a0b9-481ca97749cc)
 
 ## ⚠️ Disclaimer
 - This project is for educational and practice purposes only. **It should not be used for encrypting sensitive or valuable information** without a full understanding of encryption principles and information security. 
