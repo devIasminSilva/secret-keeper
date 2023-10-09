@@ -35,7 +35,7 @@ Secret Keeper is an application built with a singular mission - to safeguard you
 
 ## Preview
 
-![preview](https://github.com/devIasminSilva/SecretKeeper/assets/143299286/16d3aa22-ca13-4c1a-a0b9-481ca97749cc)
+![preview](https://github.com/devIasminSilva/SecretKeeper/assets/143299286/a2170e19-9ffb-4a6f-b282-0e600f30c3a3)
 
 ## ⚠️ Disclaimer
 - This project is for educational and practice purposes only. **It should not be used for encrypting sensitive or valuable information** without a full understanding of encryption principles and information security. 
