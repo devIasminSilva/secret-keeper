@@ -3,7 +3,7 @@
 
 > Status: Developing 🔧
 
-Secret Keeper is an application built with a singular mission - to safeguard your secrets. Designed for simplicity and security, it empowers you to encrypt and decrypt your confidential folders and files using the AES (Advanced Encryption Standard) encryption algorithm.
+Secret Keeper is an application built with a singular mission - to safeguard your secrets. Designed for simplicity and security, it empowers you to encrypt and decrypt your confidential folders and files using the [AES (Advanced Encryption Standard)](https://en.wikipedia.org/wiki/Advanced_Encryption_Standard) encryption algorithm.
 
 ## Getting Started
 
