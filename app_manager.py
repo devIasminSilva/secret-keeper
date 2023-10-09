@@ -7,8 +7,8 @@ class AppManager:
     def __init__(self, root):
         self.root = root
         self.root.title("Secret Keeper")
-        self.root.geometry("400x200")
-        self.root.configure(background='#0d1117')
+        self.root.geometry("500x300")
+        self.root.configure(background='#1d1e1f')
 
         self.current_frame = None
 

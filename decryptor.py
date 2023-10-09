@@ -6,38 +6,41 @@ from Crypto.Cipher import AES
 
 class DecryptFrame(tk.Frame):
     def __init__(self, app_manager):
-        super().__init__(app_manager.root, bg='#0d1117')
+        super().__init__(app_manager.root, bg='#1d1e1f')
 
         self.app_manager = app_manager
 
         self.file_path = tk.StringVar()
         self.key_path = tk.StringVar()
-        self.delete_var = tk.BooleanVar()
+
+        # Background
+        self.background_image = tk.PhotoImage(file='assets/backgrounds/bg.png')
+        self.background_label = tk.Label(self, image=self.background_image)
+        self.background_label.place(x=0, y=0, relwidth=1, relheight=1)
+
+        tk.Label(self, text=" ", background='#1d1e1f').grid(row=0, column=0, sticky=tk.W, pady=5)
 
         # Procurar arquivo
-        self.browse_file_image = tk.PhotoImage(file='Assets/Buttons/browse_file.png')
-        tk.Button(self, image=self.browse_file_image, bd=0, bg='#0d1117', activebackground='#0d1117', command=self.browse_file).grid(row=0, column=0, pady=30, sticky=tk.W)
-        tk.Entry(self, textvariable=self.file_path, foreground="gray", bg='#0d1117').grid(row = 0, column = 1, columnspan=3, ipadx=50)
+        self.browse_file_image = tk.PhotoImage(file='assets/buttons/select_file.png')
+        tk.Button(self, image=self.browse_file_image, bd=0, bg='#1d1e1f', activebackground='#1d1e1f', cursor="hand2", command=self.browse_file).grid(row=2, column=0, sticky=tk.SW, pady=20, padx=10)
+        tk.Entry(self, textvariable=self.file_path, foreground="gray", bg='#1d1e1f', bd=0).grid(row=3, column=0, columnspan=3, sticky=tk.W, ipadx=120, padx=10)
 
         # Procurar chave
-        self.browse_key_file_image = tk.PhotoImage(file='Assets/Buttons/browse_key_file.png')
-        tk.Button(self, image=self.browse_key_file_image, bd=0, bg='#0d1117', activebackground='#0d1117', command=self.browse_key_file).grid(row=1, column=0, columnspan=3, sticky=tk.SW)
-        tk.Entry(self, textvariable=self.key_path, foreground="gray", bg='#0d1117').grid(row=1, column=1, ipadx=50, padx=10)
+        self.browse_key_file_image = tk.PhotoImage(file='assets/buttons/select_key_file.png')
+        tk.Button(self, image=self.browse_key_file_image, bd=0, bg='#1d1e1f', activebackground='#1d1e1f', cursor="hand2", command=self.browse_key_file).grid(row=4, column=0, sticky=tk.SW, pady=20, padx=10)
+        tk.Entry(self, textvariable=self.key_path, foreground="gray", bg='#1d1e1f', bd=0).grid(row=5, column=0, columnspan=3, sticky=tk.W, ipadx=120, padx=10)
 
-        # Deletar arquivo após descriptografia
-        tk.Checkbutton(self, text="Delete files after decryption", bg='#0d1117', foreground="gray",  activebackground='#0d1117', selectcolor='#0d1117', variable=self.delete_var).grid(row=3, column=0, columnspan=2, sticky=tk.SW, pady=20)
+        # Confirmar
+        self.decrypt_image = tk.PhotoImage(file='assets/buttons/confirm.png')
+        tk.Button(self, image=self.decrypt_image, bd=0, bg='#1d1e1f', activebackground='#1d1e1f', cursor="hand2", command=self.decrypt).grid(row=6, column=0, sticky=tk.SW, pady=50, padx=100)
 
-
-        # Confirmar descriptografia
-        self.decrypt_image = tk.PhotoImage(file='Assets/Buttons/decrypt.png')
-        tk.Button(self, image=self.decrypt_image, bd=0, bg='#0d1117', activebackground='#0d1117', command=self.decrypt).grid(row=5, column=1, sticky=tk.SW)
-
-        # Voltar ao menu principal
-        self.back_image = tk.PhotoImage(file='Assets/Buttons/back.png')
-        tk.Button(self, image=self.back_image, bd=0, bg='#0d1117', activebackground='#0d1117', command=self.show_menu_frame).grid(row=5, column=0, sticky=tk.SW)
+        # Voltar ao menu
+        self.back_image = tk.PhotoImage(file='assets/buttons/back.png')
+        tk.Button(self, image=self.back_image, bd=0, bg='#1d1e1f', activebackground='#1d1e1f', cursor="hand2", command=self.show_menu_frame).grid(row=6, column=0, sticky=tk.SW, pady=50, padx=10)
 
 
-    # Funções
+    ###### Funções ######
+
     def show_menu_frame(self):
         self.app_manager.show_frame(self.app_manager.menu_frame)
 
@@ -72,7 +75,6 @@ class DecryptFrame(tk.Frame):
     def decrypt(self):
         file_path = self.file_path.get()
         key_path = self.key_path.get()
-        delete = self.delete_var.get()
 
         if not file_path:
             messagebox.showerror("Error", "Select a folder to decrypt.")
@@ -101,10 +103,6 @@ class DecryptFrame(tk.Frame):
                         outfile.write(decryptor.decrypt(chunk))
 
                     outfile.truncate(origsize)
-
-            if delete:
-                os.remove(file_path)
-                os.remove(key_path)
 
             messagebox.showinfo("Success", "Folder decrypted successfully.")
 

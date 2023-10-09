@@ -8,37 +8,50 @@ from Crypto.Cipher import AES
 
 class EncryptFrame(tk.Frame):
     def __init__(self, app_manager):
-        super().__init__(app_manager.root, bg='#0d1117')
+        super().__init__(app_manager.root, bg='#1d1e1f')
 
         self.app_manager = app_manager
 
         self.folder_path = tk.StringVar()
         self.password = tk.StringVar()
-        self.delete_var = tk.BooleanVar()
+        self.show_password = tk.BooleanVar()
+        self.show_password.set(False)
 
-        
+        # Background
+        self.background_image = tk.PhotoImage(file='assets/backgrounds/bg.png')
+        self.background_label = tk.Label(self, image=self.background_image)
+        self.background_label.place(x=0, y=0, relwidth=1, relheight=1)
+    
+        tk.Label(self, text=" ", background='#1d1e1f').grid(row=0, column=0, sticky=tk.W, pady=5)
+
         # Procurar pasta
-        self.browse_folder_image = tk.PhotoImage(file='Assets/Buttons/browse_folder.png')
-        tk.Button(self, image=self.browse_folder_image, bd=0, bg='#0d1117', activebackground='#0d1117', command=self.browse_folder).grid(row=0, column=0, sticky=tk.W, pady=30)
-        tk.Entry(self, textvariable=self.folder_path, foreground='gray', bg='#0d1117').grid(row=0, column=1, columnspan=3, ipadx=50)
+        self.browse_folder_image = tk.PhotoImage(file='assets/buttons/select_folder.png')
+        tk.Button(self, image=self.browse_folder_image, bd=0, bg='#1d1e1f', activebackground='#1d1e1f', cursor="hand2", command=self.browse_folder).grid(row=2, column=0, sticky=tk.SW, pady=20, padx=10)
+        tk.Entry(self, textvariable=self.folder_path, foreground='gray', bg='#1d1e1f', bd=0).grid(row=3, column=0, columnspan=3, sticky=tk.W, ipadx=120, padx=10)
 
         # Gerar senha
-        self.password_image = tk.PhotoImage(file='Assets/Buttons/password.png')
-        tk.Button(self, image=self.password_image, bd=0, bg='#0d1117', activebackground='#0d1117', command=self.generate_password).grid(row=1, column=0, columnspan=3, sticky=tk.SW)
-        tk.Entry(self, textvariable=self.password, foreground='gray', bg='#0d1117').grid(row=1, column=1, ipadx=50, padx=10)
+        self.generate_password_image = tk.PhotoImage(file='assets/buttons/generate_password.png')
+        tk.Button(self, image=self.generate_password_image, bd=0, bg='#1d1e1f', activebackground='#1d1e1f', cursor="hand2", command=self.generate_password).grid(row=4, column=0, sticky=tk.SW, pady=20, padx=10)
+        self.password_entry = tk.Entry(self, textvariable=self.password, foreground='gray', bg='#1d1e1f', bd=0, show='•')
+        self.password_entry.grid(row=5, column=0, columnspan=3, sticky=tk.W, ipadx=120, padx=10)
 
-        # Deletar pasta após criptografia
-        tk.Checkbutton(self, text="Delete folder after encryption", bg='#0d1117', foreground='gray',  activebackground='#0d1117', selectcolor='#0d1117', variable=self.delete_var).grid(row=3, column=0, columnspan=2, sticky=tk.SW, pady=20)
+        # Exibir e ocultar senha
+        self.show_password_image = tk.PhotoImage(file='assets/buttons/show.png')
+        self.hide_password_image = tk.PhotoImage(file='assets/buttons/hide.png')
+        self.toggle_password_button = tk.Button(self, image=self.show_password_image, bd=0, bg='#1d1e1f', activebackground='#1d1e1f', cursor="hand2", command=self.toggle_password)
+        self.toggle_password_button.grid(row=5, column=2, sticky=tk.W)
 
-        # Confirmar criptografia
-        self.encrypt_image = tk.PhotoImage(file='Assets/Buttons/encrypt.png')
-        tk.Button(self, image=self.encrypt_image, bd=0, bg='#0d1117', activebackground='#0d1117',command=self.encrypt).grid(row=5, column=1, sticky=tk.SW)
+        # Confirmar
+        self.confirm_image = tk.PhotoImage(file='assets/buttons/confirm.png')
+        tk.Button(self, image=self.confirm_image, bd=0, bg='#1d1e1f', activebackground='#1d1e1f', cursor="hand2", command=self.encrypt).grid(row=6, column=0, sticky=tk.SW, pady=60, padx=100)
 
-        # Voltar ao menu principal
-        self.back_image = tk.PhotoImage(file='Assets/Buttons/back.png')
-        tk.Button(self, image=self.back_image, bd=0, bg='#0d1117', activebackground='#0d1117', command=self.show_menu_frame).grid(row=5, column=0, sticky=tk.SW)
+        # voltar ao menu
+        self.back_image = tk.PhotoImage(file='assets/buttons/back.png')
+        tk.Button(self, image=self.back_image, bd=0, bg='#1d1e1f', activebackground='#1d1e1f', cursor="hand2", command=self.show_menu_frame).grid(row=6, column=0, sticky=tk.SW, pady=60, padx=10)
 
-    # Funções
+
+    ###### Funções ######
+
     def show_menu_frame(self):
         self.app_manager.show_frame(self.app_manager.menu_frame)
 
@@ -50,6 +63,17 @@ class EncryptFrame(tk.Frame):
     def generate_password(self):
         password = secrets.token_hex(16)  
         self.password.set(password)
+
+    def toggle_password(self):
+            if self.show_password.get():
+                self.password_entry.config(show='•')
+                self.toggle_password_button.config(image=self.show_password_image)
+            else:
+                self.password_entry.config(show='')
+                self.toggle_password_button.config(image=self.hide_password_image)
+
+            self.show_password.set(not self.show_password.get())
+
 
     def encrypt_file(self, key, in_filename, out_filename=None, chunksize=64*1024):
         if not out_filename:
@@ -76,7 +100,6 @@ class EncryptFrame(tk.Frame):
     def encrypt(self):
         folder_path = self.folder_path.get()
         password = self.password.get()
-        delete = self.delete_var.get()
 
         if not folder_path:
             messagebox.showerror("Error", "Please select a folder to encrypt.")
@@ -95,15 +118,12 @@ class EncryptFrame(tk.Frame):
             shutil.make_archive(folder_path, 'zip', folder_path)
             self.encrypt_file(key=key, in_filename=zip_filename, out_filename=zip_filename + ".enc", chunksize=bufferSize)
 
-            # Salva a chave em um arquivo separado
+            
             key_filename = folder_path + ".key"
             with open(key_filename, 'wb') as key_file:
                 key_file.write(key)
 
             os.remove(zip_filename)
-
-            if delete:
-                shutil.rmtree(folder_path)
 
             messagebox.showinfo("Success", "Folder encrypted successfully. Remember to store the encryption key securely.")
 
