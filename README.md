@@ -15,7 +15,7 @@ Secret Keeper is an application built with a singular mission - to safeguard you
    ```
 2. Tkinter
    ```
-   pip install tkinter
+   pip install tk
    ```
 
 ### Installation
@@ -37,7 +37,7 @@ Secret Keeper is an application built with a singular mission - to safeguard you
 
 ![preview](https://github.com/devIasminSilva/SecretKeeper/assets/143299286/0ab62336-fbb2-4c89-950a-ba6ea5cffbeb)
 
-## ⚠️ Disclaimer
+##  Disclaimer
 - This project is for educational and practice purposes only. **It should not be used for encrypting sensitive or valuable information** without a full understanding of encryption principles and information security. 
 
 - Ensure that you securely store the decryption key, as **losing it will render encrypted files inaccessible.**
