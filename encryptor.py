@@ -30,9 +30,9 @@ class EncryptFrame(tk.Frame):
 
         # Gerar senha
         self.generate_password_image = tk.PhotoImage(file='assets/buttons/generate_password.png')
-        tk.Button(self, image=self.generate_password_image, bd=0, bg='#1d1e1f', activebackground='#1d1e1f', cursor="hand2", command=self.generate_password).grid(row=4, column=0, sticky=tk.SW, pady=20, padx=10)
+        tk.Button(self, image=self.generate_password_image, bd=0, bg='#1d1e1f', activebackground='#1d1e1f', cursor="hand2", command=self.generate_password).grid(row=4, column=0, sticky=tk.SW, pady=22, padx=10)
         self.password_entry = tk.Entry(self, textvariable=self.password, foreground='gray', bg='#1d1e1f', bd=0, show='•')
-        self.password_entry.grid(row=5, column=0, columnspan=3, sticky=tk.W, ipadx=120, padx=10, pady=6)
+        self.password_entry.grid(row=5, column=0, columnspan=3, sticky=tk.W, ipadx=120, padx=10, pady=0)
 
         # Exibir e ocultar senha
         self.show_password_image = tk.PhotoImage(file='assets/buttons/show.png')
