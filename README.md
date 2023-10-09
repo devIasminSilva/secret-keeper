@@ -20,7 +20,7 @@ Secret Keeper is an application built with a singular mission - to safeguard you
 
 ### Installation
 
-1. Clone this repository
+1. Clone this repository:
    ```
    git clone https://github.com/devIasminSilva/SecretKeeper.git
    ```
