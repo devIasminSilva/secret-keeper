@@ -22,11 +22,11 @@ Secret Keeper is an application built with a singular mission - to safeguard you
 
 1. Clone this repository:
    ```
-   git clone https://github.com/devIasminSilva/SecretKeeper.git
+   git clone https://github.com/devIasminSilva/secret-keeper.git
    ```
 2. Navigate to the project directory:
    ```
-   cd SecretKeeper
+   cd secret-keeper
    ```
 3. Run the application:
    ```
