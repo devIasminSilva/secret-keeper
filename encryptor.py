@@ -47,7 +47,7 @@ class EncryptFrame(tk.Frame):
         self.show_password_image = tk.PhotoImage(file='assets/buttons/show.png')
         self.hide_password_image = tk.PhotoImage(file='assets/buttons/hide.png')
         self.toggle_password_button = tk.Button(self, image=self.show_password_image, bd=0, bg='#1d1e1f', activebackground='#1d1e1f', cursor="hand2", command=self.toggle_password)
-        self.toggle_password_button.grid(row=4, column=2, sticky=tk.W, padx=(0, 10))  # Adiciona um espaço à direita
+        self.toggle_password_button.grid(row=4, column=2, sticky=tk.W, padx=(0, 10))  
 
     def create_confirm_button(self):
         self.confirm_image = tk.PhotoImage(file='assets/buttons/confirm.png')
