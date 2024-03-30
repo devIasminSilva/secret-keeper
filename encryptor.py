@@ -17,39 +17,45 @@ class EncryptFrame(tk.Frame):
         self.show_password = tk.BooleanVar()
         self.show_password.set(False)
 
-        # Background
+        self.create_widgets()
+
+    def create_widgets(self):
+        self.create_background()
+        self.create_folder_input()
+        self.create_password_input()
+        self.create_toggle_password_button()
+        self.create_confirm_button()
+        self.create_back_button()
+
+    def create_background(self):
         self.background_image = tk.PhotoImage(file='assets/backgrounds/bg.png')
-        self.background_label = tk.Label(self, image=self.background_image).place(x=0, y=0, relwidth=1, relheight=1)
-    
-        tk.Label(self, text=" ", background='#1d1e1f').grid(row=0, column=0, sticky=tk.W, pady=5)
+        self.background_label = tk.Label(self, image=self.background_image)
+        self.background_label.place(x=0, y=0, relwidth=1, relheight=1)
 
-        # Procurar pasta
+    def create_folder_input(self):
         self.browse_folder_image = tk.PhotoImage(file='assets/buttons/select_folder.png')
-        tk.Button(self, image=self.browse_folder_image, bd=0, bg='#1d1e1f', activebackground='#1d1e1f', cursor="hand2", command=self.browse_folder).grid(row=2, column=0, sticky=tk.SW, pady=20, padx=10)
-        tk.Entry(self, textvariable=self.folder_path, foreground='gray', bg='#1d1e1f', bd=0).grid(row=3, column=0, columnspan=3, sticky=tk.W, ipadx=120, padx=10)
+        tk.Button(self, image=self.browse_folder_image, bd=0, bg='#1d1e1f', activebackground='#1d1e1f', cursor="hand2", command=self.browse_folder).grid(row=1, column=0, sticky=tk.SW, pady=30, padx=10)
+        tk.Entry(self, textvariable=self.folder_path, foreground='gray', bg='#1d1e1f', bd=0).grid(row=2, column=0, columnspan=3, sticky=tk.W, ipadx=120, padx=10)
 
-        # Gerar senha
+    def create_password_input(self):
         self.generate_password_image = tk.PhotoImage(file='assets/buttons/generate_password.png')
-        tk.Button(self, image=self.generate_password_image, bd=0, bg='#1d1e1f', activebackground='#1d1e1f', cursor="hand2", command=self.generate_password).grid(row=4, column=0, sticky=tk.SW, pady=22, padx=10)
+        tk.Button(self, image=self.generate_password_image, bd=0, bg='#1d1e1f', activebackground='#1d1e1f', cursor="hand2", command=self.generate_password).grid(row=3, column=0, sticky=tk.SW, pady=25, padx=10)
         self.password_entry = tk.Entry(self, textvariable=self.password, foreground='gray', bg='#1d1e1f', bd=0, show='•')
-        self.password_entry.grid(row=5, column=0, columnspan=3, sticky=tk.W, ipadx=120, padx=10, pady=0)
+        self.password_entry.grid(row=4, column=0, columnspan=3, sticky=tk.W, ipadx=120, padx=10, pady=0)
 
-        # Exibir e ocultar senha
+    def create_toggle_password_button(self):
         self.show_password_image = tk.PhotoImage(file='assets/buttons/show.png')
         self.hide_password_image = tk.PhotoImage(file='assets/buttons/hide.png')
         self.toggle_password_button = tk.Button(self, image=self.show_password_image, bd=0, bg='#1d1e1f', activebackground='#1d1e1f', cursor="hand2", command=self.toggle_password)
-        self.toggle_password_button.grid(row=5, column=2, sticky=tk.W)
+        self.toggle_password_button.grid(row=4, column=2, sticky=tk.W, padx=(0, 10))  # Adiciona um espaço à direita
 
-        # Confirmar
+    def create_confirm_button(self):
         self.confirm_image = tk.PhotoImage(file='assets/buttons/confirm.png')
-        tk.Button(self, image=self.confirm_image, bd=0, bg='#1d1e1f', activebackground='#1d1e1f', cursor="hand2", command=self.encrypt).grid(row=6, column=0, sticky=tk.SW, pady=40, padx=100)
+        tk.Button(self, image=self.confirm_image, bd=0, bg='#1d1e1f', activebackground='#1d1e1f', cursor="hand2", command=self.encrypt).grid(row=5, column=0, sticky=tk.SW, pady=40, padx=100)
 
-        # voltar ao menu
+    def create_back_button(self):
         self.back_image = tk.PhotoImage(file='assets/buttons/back.png')
-        tk.Button(self, image=self.back_image, bd=0, bg='#1d1e1f', activebackground='#1d1e1f', cursor="hand2", command=self.show_menu_frame).grid(row=6, column=0, sticky=tk.SW, pady=40, padx=0)
-
-
-    ###### Funções ######
+        tk.Button(self, image=self.back_image, bd=0, bg='#1d1e1f', activebackground='#1d1e1f', cursor="hand2", command=self.show_menu_frame).grid(row=5, column=0, sticky=tk.SW, pady=40, padx=0)
 
     def show_menu_frame(self):
         self.app_manager.show_frame(self.app_manager.menu_frame)
@@ -60,19 +66,18 @@ class EncryptFrame(tk.Frame):
             self.folder_path.set(folder_selected)
 
     def generate_password(self):
-        password = secrets.token_hex(16)  
+        password = secrets.token_hex(16)
         self.password.set(password)
 
     def toggle_password(self):
-            if self.show_password.get():
-                self.password_entry.config(show='•')
-                self.toggle_password_button.config(image=self.show_password_image)
-            else:
-                self.password_entry.config(show='')
-                self.toggle_password_button.config(image=self.hide_password_image)
+        if self.show_password.get():
+            self.password_entry.config(show='•')
+            self.toggle_password_button.config(image=self.show_password_image)
+        else:
+            self.password_entry.config(show='')
+            self.toggle_password_button.config(image=self.hide_password_image)
 
-            self.show_password.set(not self.show_password.get())
-
+        self.show_password.set(not self.show_password.get())
 
     def encrypt_file(self, key, in_filename, out_filename=None, chunksize=64*1024):
         if not out_filename:
@@ -117,7 +122,6 @@ class EncryptFrame(tk.Frame):
             shutil.make_archive(folder_path, 'zip', folder_path)
             self.encrypt_file(key=key, in_filename=zip_filename, out_filename=zip_filename + ".enc", chunksize=bufferSize)
 
-            
             key_filename = folder_path + ".key"
             with open(key_filename, 'wb') as key_file:
                 key_file.write(key)

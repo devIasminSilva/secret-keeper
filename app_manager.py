@@ -20,6 +20,6 @@ class AppManager:
 
     def show_frame(self, frame):
         if self.current_frame:
-            self.current_frame.pack_forget()
+            self.current_frame.place_forget()
         self.current_frame = frame
-        self.current_frame.pack()
+        self.current_frame.place(relx=0.5, rely=0.5, anchor=tk.CENTER)
