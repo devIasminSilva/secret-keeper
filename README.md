@@ -5,6 +5,10 @@
 
 Secret Keeper is an application built with a singular mission - to safeguard your secrets. Designed for simplicity and security, it empowers you to encrypt and decrypt your confidential folders and files using the [AES (Advanced Encryption Standard)](https://en.wikipedia.org/wiki/Advanced_Encryption_Standard) encryption algorithm.
 
+## Preview
+
+![preview](https://github.com/devIasminSilva/SecretKeeper/assets/143299286/0ab62336-fbb2-4c89-950a-ba6ea5cffbeb)
+
 ## Getting Started
 
 ### Prerequisites
@@ -32,10 +36,6 @@ Secret Keeper is an application built with a singular mission - to safeguard you
    ```
    python main.py
    ```
-
-## Preview
-
-![preview](https://github.com/devIasminSilva/SecretKeeper/assets/143299286/0ab62336-fbb2-4c89-950a-ba6ea5cffbeb)
 
 ##  Disclaimer
 - This project is for educational and practice purposes only. **It should not be used for encrypting sensitive or valuable information** without a full understanding of encryption principles and information security. 
