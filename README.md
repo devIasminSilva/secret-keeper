@@ -43,4 +43,4 @@ Secret Keeper is an application built with a singular mission - to safeguard you
 - Ensure that you securely store the decryption key, as **losing it will render encrypted files inaccessible.**
 
 ## License
-This project is distributed under the MIT License. See the LICENSE file for more details.
+This project is distributed under the MIT License. See the `LICENSE` file for more details.
