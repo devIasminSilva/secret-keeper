@@ -1,18 +1,14 @@
 import tkinter as tk
 from tkinter import filedialog, messagebox
-import os
-import struct
-from Crypto.Cipher import AES
+from Decrypt.decrypt_service import DecryptService
 
-class DecryptFrame(tk.Frame):
+class DecryptView(tk.Frame):
     def __init__(self, app_manager):
         super().__init__(app_manager.root, bg='#1d1e1f')
-
         self.app_manager = app_manager
-
+        self.decrypt_service = DecryptService()
         self.file_path = tk.StringVar()
         self.key_path = tk.StringVar()
-
         self.create_widgets()
 
     def create_widgets(self):
@@ -58,58 +54,16 @@ class DecryptFrame(tk.Frame):
         if key_file_selected:
             self.key_path.set(key_file_selected)
 
-    def decrypt_file(self, key, in_filename, out_filename=None, chunksize=24*1024):
-        if not out_filename:
-            out_filename = os.path.splitext(in_filename)[0]
-
-        with open(in_filename, 'rb') as infile:
-            origsize = struct.unpack('<Q', infile.read(struct.calcsize('Q')))[0]
-            iv = infile.read(16)
-            decryptor = AES.new(key, AES.MODE_CBC, iv)
-
-            with open(out_filename, 'wb') as outfile:
-                while True:
-                    chunk = infile.read(chunksize)
-                    if len(chunk) == 0:
-                        break
-                    outfile.write(decryptor.decrypt(chunk))
-
-                outfile.truncate(origsize)
-
     def decrypt(self):
         file_path = self.file_path.get()
         key_path = self.key_path.get()
 
         if not file_path:
-            messagebox.showerror("Error", "Select a folder to decrypt.")
+            messagebox.showerror("Error", "Select a file to decrypt.")
             return
 
         if not key_path:
             messagebox.showerror("Error", "Select the key file.")
             return
 
-        try:
-            with open(key_path, 'rb') as key_file:
-                key = key_file.read()
-
-            out_filename = os.path.splitext(file_path)[0]
-            
-            with open(file_path, 'rb') as infile:
-                origsize = struct.unpack('<Q', infile.read(struct.calcsize('Q')))[0]
-                iv = infile.read(16)
-                decryptor = AES.new(key, AES.MODE_CBC, iv)
-
-                with open(out_filename, 'wb') as outfile:
-                    while True:
-                        chunk = infile.read(64*1024)
-                        if len(chunk) == 0:
-                            break
-                        outfile.write(decryptor.decrypt(chunk))
-
-                    outfile.truncate(origsize)
-
-            messagebox.showinfo("Success", "Folder decrypted successfully.")
-
-        except Exception as e:
-            print("Error:", str(e))
-            messagebox.showerror("Error", "Decryption failed.")
+        self.decrypt_service.decrypt_file(file_path, key_path)
