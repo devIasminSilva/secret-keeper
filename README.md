@@ -1,46 +1,87 @@
-![banner](https://github.com/devIasminSilva/SecretKeeper/assets/143299286/830895e1-97c2-475a-89a6-1014f69133a2)
+A simple file encryption desktop application built for study and experimentation. It allows users to encrypt and decrypt files using AES-GCM encryption with secure key derivation through the Scrypt algorithm.
 
+<img width="1408" height="597" alt="frame" src="https://github.com/user-attachments/assets/b34293bd-f04b-421c-81a7-b5eee275bd94" />
 
-> Status: Developing 🔧
+## Cryptography
 
-Secret Keeper is an application built with a singular mission - to safeguard your secrets. Designed for simplicity and security, it empowers you to encrypt and decrypt your confidential folders and files using the [AES (Advanced Encryption Standard)](https://en.wikipedia.org/wiki/Advanced_Encryption_Standard) encryption algorithm.
+### Algorithms
 
-## Preview
+* **Encryption**: AES-256
+* **Mode**: GCM (Galois/Counter Mode)
+* **Key Derivation**: Scrypt
 
-![preview](https://github.com/devIasminSilva/SecretKeeper/assets/143299286/0ab62336-fbb2-4c89-950a-ba6ea5cffbeb)
+### Process
 
-## Getting Started
+1. **Key Derivation**
 
-### Prerequisites
+   * A key is derived from the user password using Scrypt
+   * Parameters: `N=16384`, `r=8`, `p=1`
+   * A random 32-byte salt is generated per operation
 
-1. PyCryptodome
+2. **Encryption (AES-GCM)**
+
+   * A random 16-byte nonce is generated
+   * The file is encrypted using AES-256-GCM
+   * GCM provides confidentiality and integrity via a 16-byte authentication tag
+
+3. **Encrypted File Format**
+
    ```
-   pip install pycryptodome
-   ```
-2. Tkinter
-   ```
-   pip install tk
-   ```
-
-### Installation
-
-1. Clone this repository:
-   ```
-   git clone https://github.com/devIasminSilva/secret-keeper.git
-   ```
-2. Navigate to the project directory:
-   ```
-   cd secret-keeper
-   ```
-3. Run the application:
-   ```
-   python main.py
+   [32 bytes Salt][16 bytes Nonce][Encrypted Data][16 bytes Auth Tag]
    ```
 
-##  Disclaimer
-- This project is for educational and practice purposes only. **It should not be used for encrypting sensitive or valuable information** without a full understanding of encryption principles and information security. 
+4. **Decryption**
 
-- Ensure that you securely store the decryption key, as **losing it will render encrypted files inaccessible.**
+   * Salt and nonce are read from the encrypted file
+   * The key is derived again from the password and salt
+   * The authentication tag is verified before decryption
+
+## Tech Stack
+
+* **Python 3**
+* **Flet**
+* **PyCryptodome**
+
+## Project Structure
+
+```
+secret-keeper/
+├── core/                   # Cryptography and file logic
+│   ├── crypto.py           # AES-GCM implementation
+│   ├── file_utils.py       # File helpers
+│   └── __init__.py
+├── ui/                     # Application UI
+│   ├── views/
+│   ├── components.py
+│   ├── styles.py
+│   ├── app.py
+│   └── __init__.py
+├── assets/
+├── tests/
+├── run.py                  # Entry point
+└── requirements.txt
+```
+
+## Usage
+
+### Install
+
+```bash
+git clone https://github.com/devIasminSilva/secret-keeper.git
+cd secret-keeper
+pip install -r requirements.txt
+```
+
+### Run
+
+```bash
+python run.py
+```
+
+https://github.com/user-attachments/assets/db858705-b4ce-4a99-b229-ca72dca2155f
 
 ## License
+
 This project is distributed under the MIT License. See the `LICENSE` file for more details.
+
+
