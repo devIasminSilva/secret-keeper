@@ -60,8 +60,6 @@ python run.py
 
 https://github.com/user-attachments/assets/db858705-b4ce-4a99-b229-ca72dca2155f
 
-## License
 
-This project is distributed under the MIT License. See the `LICENSE` file for more details.
 
 
