@@ -42,26 +42,6 @@ A simple file encryption desktop application built for study and experimentation
 * **Flet**
 * **PyCryptodome**
 
-## Project Structure
-
-```
-secret-keeper/
-├── core/                   # Cryptography and file logic
-│   ├── crypto.py           # AES-GCM implementation
-│   ├── file_utils.py       # File helpers
-│   └── __init__.py
-├── ui/                     # Application UI
-│   ├── views/
-│   ├── components.py
-│   ├── styles.py
-│   ├── app.py
-│   └── __init__.py
-├── assets/
-├── tests/
-├── run.py                  # Entry point
-└── requirements.txt
-```
-
 ## Usage
 
 ### Install
