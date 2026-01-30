@@ -47,7 +47,7 @@ A simple file encryption desktop application built for study and experimentation
 ### Install
 
 ```bash
-git clone https://github.com/devIasminSilva/secret-keeper.git
+git clone https://github.com/devyasminn/secret-keeper.git
 cd secret-keeper
 pip install -r requirements.txt
 ```
